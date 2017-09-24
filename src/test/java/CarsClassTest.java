@@ -65,13 +65,13 @@ class CarsClassTest {
 
     @Test
     void checkCompability10() {
-        minicartest.inputCharacters("mP35234","2GH63");
+        minicartest.inputCharacters("mP35234","2GH63");    //upadet test
         assertEquals(true,minicartest.checkCompability());
     }
 
     @Test
     void checkCompability11() {
-        minicartest.inputCharacters("mM35234","HHDFHHD");  //upadet test - H ne preobrazovat' v chislo
+        minicartest.inputCharacters("mM35234","HHDFHHD");
         assertEquals(false,minicartest.checkCompability());
     }
 
