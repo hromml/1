@@ -1,98 +1,45 @@
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
-class CarsClassTest {
+@RunWith(Parameterized.class)
+public class CarsClassTest {
     CarClass cartest=new CarClass();
-    MiniCarClass minicartest=new MiniCarClass();
+
+
+
+    private String model;
+    private String repairtool;
+    private boolean expected;
+
+    public CarsClassTest(String model, String repairtool, boolean expected) {
+        this.model = model;
+        this.repairtool = repairtool;
+        this.expected = expected;
+    }
+
+    @Parameterized.Parameters(name = "{index}:checking that '{0}' model and '{1}' repairtool is compability = {2}")
+    public static Iterable<Object[]> dataForTest() {
+        return Arrays.asList(new Object[][]{
+                {"M35234", "3MNK363", true},  //true
+                {"N35234", "3MN33", false},   //false
+                {"N35234", "3363", true},      //true
+                {"P35234", "2GH63", true},     //false
+                {"M35234", "HHDFHHD", false},    //true
+                {"35234", "3MNK363", false},    //true
+        });
+    }
+
+
 
     /* Proverka CarClass */
     @Test
-    void checkCompability1() {
-        cartest.inputCharacters("M35234","3MNK363");
-        assertEquals(true,cartest.checkCompability());
+    public void checkCompability1() {
+        cartest.inputCharacters(model,repairtool);
+        assertEquals(expected,cartest.checkCompability());
     }
-
-    @Test
-    void checkCompability2() {
-        cartest.inputCharacters("N35234","3MN33");    //upadet test
-        assertEquals(false,cartest.checkCompability());
-    }
-
-    @Test
-    void checkCompability3() {
-        cartest.inputCharacters("N35234","3363");
-        assertEquals(true,cartest.checkCompability());
-    }
-
-    @Test
-    void checkCompability4() {
-        cartest.inputCharacters("P35234","2GH63");
-        assertEquals(true,cartest.checkCompability());
-    }
-
-    @Test
-    void checkCompability5() {
-        cartest.inputCharacters("M35234","HHDFHHD");
-        assertEquals(false,cartest.checkCompability());
-    }
-
-    @Test
-    void checkCompability6() {
-        cartest.inputCharacters("35234","3MNK363");
-        assertEquals(false,cartest.checkCompability());
-    }
-
-
-    /* Proverka MiniCarClass */
-    @Test
-    void checkCompability7() {
-        minicartest.inputCharacters("mM35234","3MNK363");
-        assertEquals(true,minicartest.checkCompability());
-    }
-
-    @Test
-    void checkCompability8() {
-        minicartest.inputCharacters("mN35234","3MN33");    //upadet test
-        assertEquals(false,minicartest.checkCompability());
-    }
-
-    @Test
-    void checkCompability9() {
-        minicartest.inputCharacters("mN35234","3363");
-        assertEquals(true,minicartest.checkCompability());
-    }
-
-    @Test
-    void checkCompability10() {
-        minicartest.inputCharacters("mP35234","2GH63");    //upadet test
-        assertEquals(true,minicartest.checkCompability());
-    }
-
-    @Test
-    void checkCompability11() {
-        minicartest.inputCharacters("mM35234","HHDFHHD");
-        assertEquals(false,minicartest.checkCompability());
-    }
-
-    @Test
-    void checkCompability12() {
-        minicartest.inputCharacters("m35234","3MNK363");
-        assertEquals(false,minicartest.checkCompability());
-    }
-
-    @Test
-    void checkCompability13() {
-        minicartest.inputCharacters("l35234","3MNK363");
-        assertEquals(false,minicartest.checkCompability());
-    }
-
-    @Test
-    void checkCompability14() {
-        minicartest.inputCharacters("Nl35234","3MNK363");     //upadet test - nachinaetsa ne s m
-        assertEquals(true,minicartest.checkCompability());
-    }
-
-
 
 }
