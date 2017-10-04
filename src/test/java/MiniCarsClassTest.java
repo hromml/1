@@ -37,7 +37,7 @@ public class MiniCarsClassTest {
     /* Proverka MiniCarClass */
     @Test
     public void checkCompability1() {
-        minicartest.inputCharacters(model,repairtool);
+        minicartest.inputModel(model);
         assertEquals(expected,minicartest.checkCompability());
     }
 

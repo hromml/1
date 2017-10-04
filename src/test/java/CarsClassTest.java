@@ -38,7 +38,7 @@ public class CarsClassTest {
     /* Proverka CarClass */
     @Test
     public void checkCompability1() {
-        cartest.inputCharacters(model,repairtool);
+        cartest.inputModel(model);
         assertEquals(expected,cartest.checkCompability());
     }
 
